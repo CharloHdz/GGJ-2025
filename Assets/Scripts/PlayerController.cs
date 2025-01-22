@@ -1,26 +1,46 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Script de ejemplo:P
+    [Header("Settings Player")]
     public float playerSpeed = 5f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
-    public float knockbackForce = 10f; 
-
+    public float knockbackForce = 10f;
     private Rigidbody2D rb;
-    private Vector3 initialPosition;
     [SerializeField] private bool isGrounded = true;
-    private int hitsTaken = 0;
+    [Header("InputActions")]
+    private Vector2 moveInput;
+    public InputActionAsset inputActions;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        initialPosition = transform.position;
+    }
+
+    private void OnEnable()
+    {
+        moveAction = inputActions.FindAction("Move");
+        jumpAction = inputActions.FindAction("Jump");
+
+        moveAction.Enable();
+        jumpAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        moveAction.Disable();
+        jumpAction.Disable();
     }
 
     private void Update()
     {
+        moveInput = moveAction.ReadValue<Vector2>();
+
         isGrounded = Physics2D.OverlapCircle(transform.position, 2f, groundLayer);
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -37,28 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeHitAndKnockback(collision.contacts[0].point);
         }
-    }
-
-    private void TakeHitAndKnockback(Vector2 hitPoint)
-    {
-        hitsTaken++;
-
-        if (hitsTaken >= 5)
-        {
-            DieAndRespawn();
-        }
-        else
-        {
-            ApplyKnockback(hitPoint);
-        }
-    }
-
-    private void DieAndRespawn()
-    {
-        hitsTaken = 0;
-        transform.position = initialPosition;
     }
 
     private void ApplyKnockback(Vector2 hitPoint)
