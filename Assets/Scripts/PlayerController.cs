@@ -3,66 +3,60 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Settings Player")]
-    public float playerSpeed = 5f;
-    public float jumpForce = 10f;
-    public LayerMask groundLayer;
-    public float knockbackForce = 10f;
+    [Header("Settings Move")]
+    [SerializeField] private float playerSpeed = 5f;
+
+
+    [Header("Settings Jump")]
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float knockbackForce = 10f;
+    private LayerMask groundLayer;
+    private bool isGrounded = true;
+
+
+    [Header("Reference")]
+    private Animator animator;
     private Rigidbody2D rb;
-    [SerializeField] private bool isGrounded = true;
+
+
     [Header("InputActions")]
+    private PlayerInput playerInput;
     private Vector2 moveInput;
-    public InputActionAsset inputActions;
-    private InputAction moveAction;
-    private InputAction jumpAction;
+    private Vector2 input;
+
+
+    [Header("Animations")]
+    private string currentState;
+    const string Player_Idle = "player_idle";
+    const string Player_Run = "player_run";
+    const string Player_Jump = "player_jump";
+    const string Player_Shoot = "player_shoot";
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnEnable()
-    {
-        moveAction = inputActions.FindAction("Move");
-        jumpAction = inputActions.FindAction("Jump");
-
-        moveAction.Enable();
-        jumpAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        moveAction.Disable();
-        jumpAction.Disable();
+        animator = GetComponent<Animator>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        moveInput = moveAction.ReadValue<Vector2>();
-
-        isGrounded = Physics2D.OverlapCircle(transform.position, 2f, groundLayer);
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(horizontalInput * playerSpeed, rb.linearVelocity.y);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isGrounded = false;
-        }
+        input = playerInput.actions["Move"].ReadValue<Vector2>();
+        Debug.Log(input);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-        }
+        moveInput = new Vector2(input.x, 0).normalized;
+        Vector2 moveDirection = moveInput.normalized;
+        rb.MovePosition(rb.position + moveDirection * playerSpeed * Time.fixedDeltaTime);
     }
 
-    private void ApplyKnockback(Vector2 hitPoint)
+    private void ChangeAnimationState(string newState)
     {
-        Vector2 knockbackDirection = ((Vector2)transform.position - hitPoint).normalized;
-        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        if (currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
     }
 }

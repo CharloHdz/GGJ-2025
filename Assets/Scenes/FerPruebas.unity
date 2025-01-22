@@ -233,7 +233,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -244,7 +244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &176690247
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -366,12 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   jumpForce: 10
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
   knockbackForce: 10
-  isGrounded: 1
-  inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &1386399207
 GameObject:
   m_ObjectHideFlags: 0
