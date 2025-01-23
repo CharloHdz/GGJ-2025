@@ -8,7 +8,7 @@ public class chr_GameManager : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float Distance;
-    [SerializeField] private float Score;
+    public float Score;
     [SerializeField] private TextMeshProUGUI ScoreText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
