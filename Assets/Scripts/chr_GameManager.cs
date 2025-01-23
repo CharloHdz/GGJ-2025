@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class chr_GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class chr_GameManager : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float Distance;
     [SerializeField] private float Score;
+    [SerializeField] private TextMeshProUGUI ScoreText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +33,7 @@ public class chr_GameManager : MonoBehaviour
         float currentY = player.transform.position.y;
         Distance = respawnPoint.position.y - currentY;
         Score = Mathf.Round(Distance);
+        ScoreText.text = "Score: " + Score.ToString() + "m";
     }
 
     public void Respawn(){
