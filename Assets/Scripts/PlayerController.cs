@@ -77,11 +77,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-<<<<<<< Updated upstream
-        moveInput = new Vector2(input.x, -1).normalized;
-        Vector2 moveDirection = moveInput.normalized;
-        rb.MovePosition(rb.position + moveDirection * playerSpeed * Time.fixedDeltaTime);
-=======
         moveInput = new Vector2(input.x, 0).normalized;
 
         rb.linearVelocity = new Vector2(moveInput.x * playerSpeed, rb.linearVelocity.y);
@@ -108,7 +103,6 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHeight), raycastHit.collider != null ? Color.green : Color.red);
 
         return raycastHit.collider != null;
->>>>>>> Stashed changes
     }
 
     private void ChangeAnimationState(string newState)
