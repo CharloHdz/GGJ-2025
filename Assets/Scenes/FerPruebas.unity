@@ -233,7 +233,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -365,8 +365,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  jumpForce: 10
+  platformJumpForce: 15
+  airJumpForce: 6
+  maxAirJumps: 4
   platformTimeLimit: 3
+  platformTimerRecovery: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
