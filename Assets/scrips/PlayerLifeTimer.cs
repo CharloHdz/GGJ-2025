@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI; // Para manejar UI
 using UnityEngine.SceneManagement; // Para reiniciar escena si el tiempo llega a 0
-
+using TMPro;
 public class PlayerLifeTimer : MonoBehaviour
 {
     [Header("Configuración del temporizador")]
     public float lifeTime = 30f; // Tiempo de vida inicial del jugador
-    public Text timerText; // Referencia al texto de la UI para mostrar el tiempo
+    public TextMeshProUGUI timerText; // Referencia al texto de la UI para mostrar el tiempo
 
     [Header("Interacción con burbujas")]
     public float bubbleBonusTime = 2f; // Tiempo que suman las burbujas
