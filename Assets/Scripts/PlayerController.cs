@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveInput = new Vector2(input.x, 0).normalized;
+        moveInput = new Vector2(input.x, -1).normalized;
         Vector2 moveDirection = moveInput.normalized;
         rb.MovePosition(rb.position + moveDirection * playerSpeed * Time.fixedDeltaTime);
     }
