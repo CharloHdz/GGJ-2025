@@ -1,11 +1,13 @@
 using System;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Settings Move")]
-    [SerializeField] private float playerSpeed = 5f;
+    [SerializeField] private float playerSpeed = 15f;
 
 
     [Header("Settings Jump")]
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [Header("Settings Platform Timer")]
     [SerializeField] private float platformTimeLimit = 3f;
     [SerializeField] private float platformTimerRecovery = 1f;
+    [SerializeField] private float platformZoomThreshold = 1f;
     private float platformTimer;
 
 
@@ -38,6 +41,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
 
+    [Header("Cinemachine")]
+    [SerializeField] private CinemachineCamera virtualCamera;
+    [SerializeField] private float zoomSize = 5.5f;
+    [SerializeField] private float zoomSpeed = 1f;
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    private float defaultZoomSize;
+
+
     [Header("Animations")]
     private string currentState;
     const string Player_Idle = "player_idle";
@@ -52,7 +63,12 @@ public class PlayerController : MonoBehaviour
         //animator = GetComponent<Animator>();      //Descomentar cuando se tenga animaciones
         playerInput = GetComponent<PlayerInput>();
         playerCollider = GetComponent<Collider2D>();
+
         platformTimer = platformTimeLimit;
+        if (virtualCamera != null)
+        {
+            defaultZoomSize = virtualCamera.Lens.OrthographicSize;
+        }
     }
 
     private void Update()
@@ -65,6 +81,11 @@ public class PlayerController : MonoBehaviour
         {
             currentAirJumps = 0;
             platformTimer -= Time.deltaTime;
+
+            if (platformTimer >= platformZoomThreshold)
+            {
+                ApplyEffectsCamera();
+            }
 
             if (platformTimer <= 0)
             {
@@ -79,6 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            ResetCameraEffects();
             RecoveryPlatformTimer();
 
             if (playerInput.actions["Jump"].WasPressedThisFrame() && currentAirJumps < maxAirJumps)
@@ -123,6 +145,27 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHeight), raycastHit.collider != null ? Color.green : Color.red);
 
         return raycastHit.collider != null;
+    }
+
+    private void ApplyEffectsCamera()
+    {
+        if (virtualCamera != null)
+        {
+            virtualCamera.Lens.OrthographicSize = Mathf.Lerp(virtualCamera.Lens.OrthographicSize, zoomSize, zoomSpeed * Time.deltaTime);
+        }
+
+        if (impulseSource != null && !impulseSource.enabled)
+        {
+            impulseSource.GenerateImpulse();
+        }
+    }
+
+    private void ResetCameraEffects()
+    {
+        if (virtualCamera != null)
+        {
+            virtualCamera.Lens.OrthographicSize = Mathf.Lerp(virtualCamera.Lens.OrthographicSize, defaultZoomSize, zoomSpeed * Time.deltaTime);
+        }
     }
 
     private void ChangeAnimationState(string newState)
