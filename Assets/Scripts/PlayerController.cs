@@ -1,5 +1,4 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,14 +9,21 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Settings Jump")]
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float platformJumpForce = 12f;
+    [SerializeField] private float airJumpForce = 6f;
+    [SerializeField] private int maxAirJumps = 4;
+    private int currentAirJumps;
+
+
+    [Header("Settings Platform Timer")]
     [SerializeField] private float platformTimeLimit = 3f;
+    [SerializeField] private float platformTimerRecovery = 1f;
     private float platformTimer;
-    private bool isGrounded;
 
 
     [Header("Ground Check")]
     [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
 
 
     [Header("Reference")]
@@ -57,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
+            currentAirJumps = 0;
             platformTimer -= Time.deltaTime;
 
             if (platformTimer <= 0)
@@ -66,12 +73,19 @@ public class PlayerController : MonoBehaviour
 
             if (playerInput.actions["Jump"].WasPressedThisFrame())
             {
-                Jump();
+                Jump(platformJumpForce);
             }
+
         }
         else
         {
-            platformTimer = platformTimeLimit;
+            RecoveryPlatformTimer();
+
+            if (playerInput.actions["Jump"].WasPressedThisFrame() && currentAirJumps < maxAirJumps)
+            {
+                currentAirJumps++;
+                Jump(airJumpForce);
+            }
         }
     }
 
@@ -82,11 +96,17 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput.x * playerSpeed, rb.linearVelocity.y);
     }
 
-    private void Jump()
+    private void Jump(float jumpForce)
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
         //ChangeAnimationState(Player_Jump);    //Descomentar cuando se tenga animaciones
+    }
+
+    private void RecoveryPlatformTimer()
+    {
+        platformTimer += platformTimerRecovery * Time.deltaTime;
+        platformTimer = Mathf.Clamp(platformTimer, 0, platformTimeLimit);
     }
 
     private void Die()
