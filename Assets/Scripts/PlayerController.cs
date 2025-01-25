@@ -54,13 +54,13 @@ public class PlayerController : MonoBehaviour
     const string Player_Idle = "player_idle";
     const string Player_Run = "player_run";
     const string Player_Jump = "player_jump";
-    const string Player_Shoot = "player_shoot";
+    const string Player_Air = "player_air";
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();      //Descomentar cuando se tenga animaciones
+        animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerCollider = GetComponent<Collider2D>();
 
@@ -95,6 +95,16 @@ public class PlayerController : MonoBehaviour
             if (playerInput.actions["Jump"].WasPressedThisFrame())
             {
                 Jump(platformJumpForce);
+                ChangeAnimationState(Player_Jump);
+            }
+            else if (Mathf.Abs(input.x) > 0.1)
+            {
+                ChangeAnimationState(Player_Run);
+                transform.localScale = new Vector3(Mathf.Sign(input.x), 1, 1);
+            }
+            else
+            {
+                ChangeAnimationState(Player_Idle);
             }
 
         }
@@ -107,6 +117,11 @@ public class PlayerController : MonoBehaviour
             {
                 currentAirJumps++;
                 Jump(airJumpForce);
+                ChangeAnimationState(Player_Jump);
+            }
+            else if (rb.linearVelocity.y < 0)
+            {
+                ChangeAnimationState(Player_Air);
             }
         }
     }
@@ -121,8 +136,6 @@ public class PlayerController : MonoBehaviour
     private void Jump(float jumpForce)
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-        //ChangeAnimationState(Player_Jump);    //Descomentar cuando se tenga animaciones
     }
 
     private void RecoveryPlatformTimer()
