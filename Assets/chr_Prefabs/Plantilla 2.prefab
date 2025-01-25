@@ -31,6 +31,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8590241437283459182}
+  - {fileID: 2101423264767433355}
+  - {fileID: 8133138792087894859}
+  - {fileID: 6403878064663161274}
+  - {fileID: 7527335790446514484}
+  - {fileID: 6731762347074877528}
+  - {fileID: 5385221903704389819}
+  - {fileID: 4124283561912060555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &8993555306870726445
@@ -57,9 +64,9 @@ GameObject:
   - component: {fileID: 4765626134902897864}
   - component: {fileID: 5072174098782993975}
   - component: {fileID: 8191909410108957429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible (1)
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,11 +80,11 @@ Transform:
   m_GameObject: {fileID: 2170241720266457236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4765626134902897864
 Tilemap:
@@ -273,9 +280,9 @@ GameObject:
   - component: {fileID: 1175875855828220689}
   - component: {fileID: 6626965279263841945}
   - component: {fileID: 7887222429798478926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,11 +296,11 @@ Transform:
   m_GameObject: {fileID: 2808751021451363108}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1175875855828220689
 Tilemap:
@@ -489,9 +496,9 @@ GameObject:
   - component: {fileID: 5401228699514427798}
   - component: {fileID: 725696420181780181}
   - component: {fileID: 8720643803205433994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible (4)
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -505,11 +512,11 @@ Transform:
   m_GameObject: {fileID: 4269412138854347075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &5401228699514427798
 Tilemap:
@@ -724,14 +731,7 @@ Transform:
   m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2101423264767433355}
-  - {fileID: 8133138792087894859}
-  - {fileID: 6403878064663161274}
-  - {fileID: 7527335790446514484}
-  - {fileID: 6731762347074877528}
-  - {fileID: 5385221903704389819}
-  - {fileID: 4124283561912060555}
+  m_Children: []
   m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &7476401162612260830
@@ -2924,9 +2924,9 @@ GameObject:
   - component: {fileID: 3185203606772833640}
   - component: {fileID: 3795068552909183665}
   - component: {fileID: 7944043272708648566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible (5)
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2940,11 +2940,11 @@ Transform:
   m_GameObject: {fileID: 6756711224722173932}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &3185203606772833640
 Tilemap:
@@ -3140,7 +3140,7 @@ GameObject:
   - component: {fileID: 655320430406835758}
   - component: {fileID: 5693948139461217475}
   - component: {fileID: 8509202909100746740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plantilla 2 - Picos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3156,11 +3156,11 @@ Transform:
   m_GameObject: {fileID: 7752432277046230180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &655320430406835758
 Tilemap:
@@ -4026,9 +4026,9 @@ GameObject:
   - component: {fileID: 4426348073406933928}
   - component: {fileID: 3227483381264795669}
   - component: {fileID: 6566169294020784655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible (2)
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4042,11 +4042,11 @@ Transform:
   m_GameObject: {fileID: 7843290336440215723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4426348073406933928
 Tilemap:
@@ -4242,9 +4242,9 @@ GameObject:
   - component: {fileID: 4685306493534720924}
   - component: {fileID: 2852779075823520358}
   - component: {fileID: 9944331665018106}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 2 - Rompible (3)
-  m_TagString: Untagged
+  m_TagString: Rompible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4258,11 +4258,11 @@ Transform:
   m_GameObject: {fileID: 7999511384126920621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8590241437283459182}
+  m_Father: {fileID: 7880261464361579122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &4685306493534720924
 Tilemap:

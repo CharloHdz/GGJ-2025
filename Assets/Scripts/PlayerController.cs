@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask RompibleLayer;
     private bool isGrounded;
 
 
@@ -33,6 +34,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D playerCollider;
+
+    [Header("Bullet")]
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
 
 
     [Header("InputActions")]
@@ -136,6 +141,8 @@ public class PlayerController : MonoBehaviour
     private void Jump(float jumpForce)
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        //Disparar Bala
+        chr_OP.instance.SpawnBullet(firePoint.position, firePoint.rotation);
     }
 
     private void RecoveryPlatformTimer()
