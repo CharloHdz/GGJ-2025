@@ -33,7 +33,7 @@ public class chr_GameManager : MonoBehaviour
         float currentY = player.transform.position.y;
         Distance = respawnPoint.position.y - currentY;
         Score = Mathf.Round(Distance);
-        ScoreText.text = "Score: " + Score.ToString() + "m";
+        ScoreText.text = "Depth: " + Score.ToString() + "m";
     }
 
     public void Respawn(){

@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrefabs:
-  - {fileID: 3490169119600797980, guid: bd0aa139bb788470b986bcfa545bea81, type: 3}
-  - {fileID: 589274516494485041, guid: 9aa5196f297524d579f507eaaa3b51e7, type: 3}
-  - {fileID: 3236678148177035711, guid: 483625d19c53f45ef8f6edef638e4158, type: 3}
+  - {fileID: 9011200387445235826, guid: c2df1407519e6704ea844b9c4ede0917, type: 3}
+  - {fileID: 915077421469020969, guid: ad3d3450626d48c458f2d7e57d9e6b4e, type: 3}
+  - {fileID: 3360499404567373387, guid: e791ea3983c0408469367401f05c0323, type: 3}
   player: {fileID: 0}
-  spawnDistance: 11
-  pieceHeight: 10
+  spawnDistance: 25
+  pieceHeight: 32
   poolSize: 10
+  initialYPosition: -5
+  reuseMargin: -100

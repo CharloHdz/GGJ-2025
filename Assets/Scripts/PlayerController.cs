@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float platformTimeLimit = 3f;
     [SerializeField] private float platformTimerRecovery = 1f;
     [SerializeField] private float platformZoomThreshold = 1f;
+    [SerializeField] private float bubbleBonusTime = 0.5f;
     private float platformTimer;
 
 
@@ -72,6 +74,10 @@ public class PlayerController : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private Slider airJumpsSlider;
 
+    [SerializeField] private chr_GameManager gm;
+    [SerializeField] private LevelGenerator lg;
+    [SerializeField] private TextMeshProUGUI TimeText;
+
 
     private void Start()
     {
@@ -95,6 +101,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //Poner el platformTimer en el HUD en decimales
+        TimeText.text = "Air: " + platformTimer.ToString("F2");
         input = playerInput.actions["Move"].ReadValue<Vector2>();
 
         bool wasGrounded = isGrounded;
@@ -181,8 +189,11 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
-        Debug.Log("GAME OVER: Time limit");
+        //Destroy(gameObject);
+        lg.InitializePool();
+        gm.Respawn();
+        platformTimer = platformTimeLimit;
+        //Debug.Log("GAME OVER: Time limit");
     }
 
     private bool IsGrounded()
@@ -254,5 +265,24 @@ public class PlayerController : MonoBehaviour
     {
         var mainModule = landParticle.main;
         landParticle.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Detectar colisión con burbujas
+        if (collision.CompareTag("Bubble"))
+        {
+            platformTimer += bubbleBonusTime; // Añadir tiempo al temporizador
+            collision.gameObject.GetComponent<Animator>().SetTrigger("pop");
+        }
+    }
+
+    //OnCollision para que con el tag picos se muera con la funcion die
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Picos"))
+        {
+            Die();
+        }
     }
 }
