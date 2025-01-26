@@ -24,6 +24,7 @@ public void Reanudar(){
 }
 public void Inicio(){
 
+    Time.timeScale = 1;
      SceneManager.LoadScene("MenuPrincipal");
 }
 
