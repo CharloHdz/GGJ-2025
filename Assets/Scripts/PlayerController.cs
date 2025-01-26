@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float platformZoomThreshold = 1f;
     [SerializeField] private float totalAir = 10f;
     [SerializeField] private float totalAirLimit = 10f;
-    [SerializeField] private float bubbleBonusTime = 0.5f;
+    [SerializeField] private float bubbleBonusTime = 3f;
     private float platformTimer;
 
 

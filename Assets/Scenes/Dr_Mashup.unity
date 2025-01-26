@@ -321,6 +321,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 289448924}
     - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
+      propertyPath: bubbleBonusTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
       propertyPath: platformJumpForce
       value: 35
       objectReference: {fileID: 0}
@@ -638,7 +642,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1344,8 +1348,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1442,7 +1446,11 @@ MonoBehaviour:
   respawnPoint: {fileID: 1946984899}
   Distance: 0
   Score: 0
+  HighScore: 0
+  GamePanels: []
+  GameState: 0
   ScoreText: {fileID: 2087363109}
+  HighScoreText: {fileID: 0}
 --- !u!4 &2104386198
 Transform:
   m_ObjectHideFlags: 0
@@ -1662,7 +1670,7 @@ GameObject:
   - component: {fileID: 1483519142491595477}
   m_Layer: 6
   m_Name: Plantilla 2 - Rompible
-  m_TagString: Rompible
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,10 +1819,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1114855980}
-  - {fileID: 305081270}
   - {fileID: 1135662090}
   - {fileID: 1006486891}
   - {fileID: 2104386198}
+  - {fileID: 305081270}
   - {fileID: 1280252942}
   - {fileID: 1946984899}
   - {fileID: 1495159628872099049}
