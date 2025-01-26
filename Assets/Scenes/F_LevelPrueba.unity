@@ -293,10 +293,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
-      propertyPath: maxAirJumps
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 736393509}
@@ -304,10 +300,6 @@ PrefabInstance:
       propertyPath: airJumpsSlider
       value: 
       objectReference: {fileID: 289448924}
-    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
-      propertyPath: platformTimeLimit
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8664625582691384108, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

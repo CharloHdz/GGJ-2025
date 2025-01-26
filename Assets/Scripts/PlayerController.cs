@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D playerCollider;
 
+
     [Header("Bullet")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -60,6 +61,12 @@ public class PlayerController : MonoBehaviour
     const string Player_Run = "player_run";
     const string Player_Jump = "player_jump";
     const string Player_Air = "player_air";
+
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem jumpParticle;
+    [SerializeField] private ParticleSystem launchParticle;
+    [SerializeField] private ParticleSystem landParticle;
 
 
     [Header("HUD")]
@@ -90,7 +97,13 @@ public class PlayerController : MonoBehaviour
     {
         input = playerInput.actions["Move"].ReadValue<Vector2>();
 
+        bool wasGrounded = isGrounded;
         isGrounded = IsGrounded();
+
+        if (isGrounded && !wasGrounded)
+        {
+            PlayLandParticles();
+        }
 
         if (isGrounded)
         {
@@ -112,6 +125,7 @@ public class PlayerController : MonoBehaviour
             if (playerInput.actions["Jump"].WasPressedThisFrame())
             {
                 Jump(platformJumpForce);
+                PlayJumpParticles();
                 ChangeAnimationState(Player_Jump);
             }
             else if (Mathf.Abs(input.x) > 0.1)
@@ -135,6 +149,7 @@ public class PlayerController : MonoBehaviour
                 currentAirJumps--;
                 UpdateAirJumpsSlider();
                 Jump(airJumpForce);
+                PlayLaunchParticles();
                 ChangeAnimationState(Player_Jump);
             }
             else if (rb.linearVelocity.y < 0)
@@ -221,5 +236,23 @@ public class PlayerController : MonoBehaviour
         if (currentState == newState) return;
         animator.Play(newState);
         currentState = newState;
+    }
+
+    private void PlayJumpParticles()
+    {
+        var mainModule = jumpParticle.main;
+        jumpParticle.Play();
+        launchParticle.Play();
+    }
+
+    private void PlayLaunchParticles()
+    {
+        launchParticle.Play();
+    }
+
+    private void PlayLandParticles()
+    {
+        var mainModule = landParticle.main;
+        landParticle.Play();
     }
 }
