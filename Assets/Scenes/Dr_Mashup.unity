@@ -305,6 +305,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 561838013}
     - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
+      propertyPath: playerSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
+      propertyPath: airJumpForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 736393509}
@@ -312,6 +320,14 @@ PrefabInstance:
       propertyPath: airJumpsSlider
       value: 
       objectReference: {fileID: 289448924}
+    - target: {fileID: 4030492609406327305, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
+      propertyPath: platformJumpForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370382229930325662, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
+      propertyPath: m_GravityScale
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8664625582691384108, guid: f51b629a824d0e24eacf3acce7685ad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
