@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class chr_GameManager : MonoBehaviour
 {
-    [Header("Singleton")]
-    public static chr_GameManager Instance;
+    // Singleton
+    public static chr_GameManager Instance {get; private set;}
     public float HighScore;
 
     [Header("UI")]
@@ -15,22 +15,25 @@ public class chr_GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI HighScoreText;
     public Idiomas Idioma;
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    // Singleton
+    private void Awake() 
+    { 
+        // If there is an instance, and it's not me, delete myself.
+        
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+            DontDestroyOnLoad(gameObject);
+        } 
     }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //ChangeGameState(GameState.Menu);
+        DisableAllPanels();
     }
 
     // Update is called once per frame
