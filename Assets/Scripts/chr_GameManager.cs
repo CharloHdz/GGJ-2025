@@ -6,19 +6,12 @@ public class chr_GameManager : MonoBehaviour
 {
     [Header("Singleton")]
     public static chr_GameManager Instance;
-    [Header("Player")]
-    [SerializeField] private Rigidbody2D PlayerRB;
-    [SerializeField] public GameObject player;
-    [SerializeField] private Transform respawnPoint;
-    [SerializeField] private float Distance;
-    public float Score;
     public float HighScore;
 
     [Header("UI")]
     // GamePanels
     [SerializeField] private GameObject[] GamePanels;
     [SerializeField] private GameState GameState;
-    [SerializeField] private TextMeshProUGUI ScoreText;
     [SerializeField] private TextMeshProUGUI HighScoreText;
     public Idiomas Idioma;
 
@@ -37,40 +30,12 @@ public class chr_GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        if (PlayerRB == null)
-    {
-        Debug.LogError("PlayerRB no está asignado en el Inspector.");
-    }
-    if (player == null)
-    {
-        Debug.LogError("El objeto Player no está asignado en el Inspector.");
-    }
-    if (respawnPoint == null)
-    {
-        Debug.LogError("El punto de reaparición (respawnPoint) no está asignado en el Inspector.");
-    }
-    if (ScoreText == null || HighScoreText == null)
-    {
-        Debug.LogError("Las referencias de texto para ScoreText o HighScoreText no están asignadas.");
-    }
         //ChangeGameState(GameState.Menu);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ScoreDistancia();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
-
-        if (PlayerRB.linearVelocity.y < -10)
-        {
-            PlayerRB.linearVelocity = new Vector2(PlayerRB.linearVelocity.x, -10);
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -85,32 +50,9 @@ public class chr_GameManager : MonoBehaviour
         }
     }
 
-    public void ScoreDistancia()
-    {
-        float currentY = player.transform.position.y;
-        Distance = respawnPoint.position.y - currentY;
-        Score = Mathf.Round(Distance);
-
-        // Check and update High Score
-        if (Score > HighScore)
-        {
-            HighScore = Score;
-            PlayerPrefs.SetFloat("HighScore", HighScore);
-            UpdateHighScoreUI();
-        }
-
-        ScoreText.text = "Depth: " + Score.ToString() + "m";
-    }
-
     public void UpdateHighScoreUI()
     {
         HighScoreText.text = "High Score: " + HighScore.ToString() + "m";
-    }
-
-    public void Respawn()
-    {
-        player.transform.position = respawnPoint.position;
-        PlayerRB.linearVelocity = new Vector2(0, 0);
     }
 
     // UI Buttons
@@ -164,9 +106,6 @@ public class chr_GameManager : MonoBehaviour
                 break;
             case GameState.PlayGame:
                 SceneManager.LoadScene(1);
-                PlayerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-                // Load High Score from PlayerPrefs
-                HighScore = PlayerPrefs.GetFloat("HighScore", 0);
                 UpdateHighScoreUI();
                 DisableAllPanels();
                 GamePanels[0].SetActive(true);
