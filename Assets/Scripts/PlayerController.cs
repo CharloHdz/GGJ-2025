@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float platformTimeLimit = 3f;
     [SerializeField] private float platformTimerRecovery = 1f;
     [SerializeField] private float platformZoomThreshold = 1f;
+    [SerializeField] private float totalAir = 10f;
+    [SerializeField] private float totalAirLimit = 10f;
     [SerializeField] private float bubbleBonusTime = 0.5f;
     private float platformTimer;
 
@@ -101,8 +103,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //Poner el platformTimer en el HUD en decimales
-        TimeText.text = "Air: " + platformTimer.ToString("F2");
+        //Poner el Air en el HUD en decimales
+        TimeText.text = "Air: " + totalAir.ToString("F2");
+        totalAir -= Time.deltaTime;
+        if (totalAir <= 0)
+            {
+                Die();
+            }
+
         input = playerInput.actions["Move"].ReadValue<Vector2>();
 
         bool wasGrounded = isGrounded;
@@ -193,6 +201,7 @@ public class PlayerController : MonoBehaviour
         lg.InitializePool();
         gm.Respawn();
         platformTimer = platformTimeLimit;
+        totalAir = totalAirLimit;
         //Debug.Log("GAME OVER: Time limit");
     }
 
@@ -272,7 +281,7 @@ public class PlayerController : MonoBehaviour
         // Detectar colisión con burbujas
         if (collision.CompareTag("Bubble"))
         {
-            platformTimer += bubbleBonusTime; // Añadir tiempo al temporizador
+            totalAir += bubbleBonusTime; // Añadir tiempo al temporizador
             collision.gameObject.GetComponent<Animator>().SetTrigger("pop");
         }
     }
