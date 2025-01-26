@@ -20,6 +20,7 @@ public class chr_GameManager : MonoBehaviour
     [SerializeField] private GameState GameState;
     [SerializeField] private TextMeshProUGUI ScoreText;
     [SerializeField] private TextMeshProUGUI HighScoreText;
+    public Idiomas Idioma;
 
     void Awake()
     {
@@ -36,13 +37,24 @@ public class chr_GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 
-        // Load High Score from PlayerPrefs
-        HighScore = PlayerPrefs.GetFloat("HighScore", 0);
-        UpdateHighScoreUI();
-
-        ChangeGameState(GameState.Menu);
+        if (PlayerRB == null)
+    {
+        Debug.LogError("PlayerRB no está asignado en el Inspector.");
+    }
+    if (player == null)
+    {
+        Debug.LogError("El objeto Player no está asignado en el Inspector.");
+    }
+    if (respawnPoint == null)
+    {
+        Debug.LogError("El punto de reaparición (respawnPoint) no está asignado en el Inspector.");
+    }
+    if (ScoreText == null || HighScoreText == null)
+    {
+        Debug.LogError("Las referencias de texto para ScoreText o HighScoreText no están asignadas.");
+    }
+        //ChangeGameState(GameState.Menu);
     }
 
     // Update is called once per frame
@@ -152,6 +164,10 @@ public class chr_GameManager : MonoBehaviour
                 break;
             case GameState.PlayGame:
                 SceneManager.LoadScene(1);
+                PlayerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+                // Load High Score from PlayerPrefs
+                HighScore = PlayerPrefs.GetFloat("HighScore", 0);
+                UpdateHighScoreUI();
                 DisableAllPanels();
                 GamePanels[0].SetActive(true);
                 break;
@@ -178,7 +194,7 @@ public class chr_GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PlayerPrefs.Save(); // Ensure High Score is saved when the application closes
+        PlayerPrefs.Save();
     }
 }
 
@@ -190,5 +206,11 @@ public enum GameState
     Pause,
     Settings,
     GameOver
+}
+
+public enum Idiomas
+{
+    Español,
+    Ingles
 }
 

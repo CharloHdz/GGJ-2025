@@ -618,10 +618,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1814481362}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1147604724}
+        m_TargetAssemblyTypeName: chr_GameManager, Assembly-CSharp
+        m_MethodName: Settings
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -629,18 +629,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 701076547}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &374442348
 MonoBehaviour:
@@ -691,6 +679,7 @@ GameObject:
   - component: {fileID: 463844075}
   - component: {fileID: 463844077}
   - component: {fileID: 463844076}
+  - component: {fileID: 463844078}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -816,6 +805,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463844074}
   m_CullTransparentMesh: 1
+--- !u!114 &463844078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463844074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ce7a8c809f0cb42941c792d40a143a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "_espa\xF1ol": SALIR
+  _ingles: QUIT
 --- !u!1 &486079307
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +946,7 @@ GameObject:
   - component: {fileID: 550849452}
   - component: {fileID: 550849454}
   - component: {fileID: 550849453}
+  - component: {fileID: 550849455}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1068,6 +1072,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550849451}
   m_CullTransparentMesh: 1
+--- !u!114 &550849455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550849451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ce7a8c809f0cb42941c792d40a143a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "_espa\xF1ol": JUGAR
+  _ingles: PLAY
 --- !u!1 &701076547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1162,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701076547}
   m_CullTransparentMesh: 1
+--- !u!114 &1147604724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4359692169908561893, guid: a7eb40de0b561a9448fc556f358c923f, type: 3}
+  m_PrefabInstance: {fileID: 1934880607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13c19444b9602244aac0eeaafd482f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1273944292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1276,7 @@ GameObject:
   - component: {fileID: 1302855989}
   - component: {fileID: 1302855991}
   - component: {fileID: 1302855990}
+  - component: {fileID: 1302855992}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1374,6 +1404,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302855988}
   m_CullTransparentMesh: 1
+--- !u!114 &1302855992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302855988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ce7a8c809f0cb42941c792d40a143a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "_espa\xF1ol": AJUSTES
+  _ingles: SETTINGS
 --- !u!1 &1636488566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,9 +1501,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 486079312}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 1147604724}
+        m_TargetAssemblyTypeName: chr_GameManager, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
