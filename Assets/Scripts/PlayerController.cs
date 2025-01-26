@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -61,6 +62,10 @@ public class PlayerController : MonoBehaviour
     const string Player_Air = "player_air";
 
 
+    [Header("HUD")]
+    [SerializeField] private Slider airJumpsSlider;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +78,12 @@ public class PlayerController : MonoBehaviour
         {
             defaultZoomSize = virtualCamera.Lens.OrthographicSize;
         }
+
+        if (airJumpsSlider != null)
+        {
+            airJumpsSlider.maxValue = maxAirJumps;
+            airJumpsSlider.value = currentAirJumps;
+        }
     }
 
     private void Update()
@@ -83,7 +94,9 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            currentAirJumps = 0;
+            currentAirJumps = maxAirJumps;
+            UpdateAirJumpsSlider();
+
             platformTimer -= Time.deltaTime;
 
             if (platformTimer >= platformZoomThreshold)
@@ -117,9 +130,10 @@ public class PlayerController : MonoBehaviour
             ResetCameraEffects();
             RecoveryPlatformTimer();
 
-            if (playerInput.actions["Jump"].WasPressedThisFrame() && currentAirJumps < maxAirJumps)
+            if (playerInput.actions["Jump"].WasPressedThisFrame() && currentAirJumps > 0)
             {
-                currentAirJumps++;
+                currentAirJumps--;
+                UpdateAirJumpsSlider();
                 Jump(airJumpForce);
                 ChangeAnimationState(Player_Jump);
             }
@@ -191,6 +205,14 @@ public class PlayerController : MonoBehaviour
                 shake.AmplitudeGain = 0f;
                 shake.FrequencyGain = 0f;
             }
+        }
+    }
+
+    private void UpdateAirJumpsSlider()
+    {
+        if (airJumpsSlider != null)
+        {
+            airJumpsSlider.value = currentAirJumps;
         }
     }
 
