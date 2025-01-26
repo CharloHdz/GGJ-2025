@@ -159,8 +159,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.042358994, y: 0.005990386}
-  m_Size: {x: 1.0501416, y: 2.0119808}
+  m_Offset: {x: 0.012062788, y: 0.005990386}
+  m_Size: {x: 0.91243315, y: 2.0119808}
   m_Direction: 0
 --- !u!50 &5370382229930325662
 Rigidbody2D:
@@ -224,19 +224,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  platformJumpForce: 15
+  platformJumpForce: 10
   airJumpForce: 6
   maxAirJumps: 4
-  platformTimeLimit: 10
+  platformTimeLimit: 3
   platformTimerRecovery: 1
   platformZoomThreshold: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  RompibleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   bulletPrefab: {fileID: 5294784282981300497, guid: 533b6fbb76e35e944a6128bc7a8939c1, type: 3}
   firePoint: {fileID: 5849990810662771477}
   virtualCamera: {fileID: 0}
-  zoomSize: 5.5
+  zoomSize: 10
   zoomSpeed: 3
   impulseSource: {fileID: 5045711057560714658}
 --- !u!114 &615725753632897937

@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CinemachineCamera virtualCamera;
     [SerializeField] private float zoomSize = 5.5f;
     [SerializeField] private float zoomSpeed = 1f;
-    [SerializeField] private CinemachineImpulseSource impulseSource;
     private float defaultZoomSize;
 
 
@@ -172,11 +171,12 @@ public class PlayerController : MonoBehaviour
         if (virtualCamera != null)
         {
             virtualCamera.Lens.OrthographicSize = Mathf.Lerp(virtualCamera.Lens.OrthographicSize, zoomSize, zoomSpeed * Time.deltaTime);
-        }
-
-        if (impulseSource != null && !impulseSource.enabled)
-        {
-            impulseSource.GenerateImpulse();
+            var shake = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Noise) as CinemachineBasicMultiChannelPerlin;
+            if (shake != null)
+            {
+                shake.AmplitudeGain = 0.5f;
+                shake.FrequencyGain = 2f;
+            }
         }
     }
 
@@ -185,6 +185,12 @@ public class PlayerController : MonoBehaviour
         if (virtualCamera != null)
         {
             virtualCamera.Lens.OrthographicSize = Mathf.Lerp(virtualCamera.Lens.OrthographicSize, defaultZoomSize, zoomSpeed * Time.deltaTime);
+            var shake = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Noise) as CinemachineBasicMultiChannelPerlin;
+            if (shake != null)
+            {
+                shake.AmplitudeGain = 0f;
+                shake.FrequencyGain = 0f;
+            }
         }
     }
 
