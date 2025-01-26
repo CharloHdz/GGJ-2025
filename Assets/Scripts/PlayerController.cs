@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D playerCollider;
+    private chr_ScoreManager chr_ScoreManager;
 
 
     [Header("Bullet")]
@@ -66,6 +67,13 @@ public class PlayerController : MonoBehaviour
     const string Player_Jump = "player_jump";
     const string Player_Air = "player_air";
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip airJumpClip;
+    [SerializeField] private AudioClip landClip;
+
+
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem jumpParticle;
@@ -87,6 +95,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerCollider = GetComponent<Collider2D>();
+
+        audioSource = GetComponent<AudioSource>();//Checar que no haya errores con GM
 
         platformTimer = platformTimeLimit;
         if (virtualCamera != null)
@@ -199,7 +209,7 @@ public class PlayerController : MonoBehaviour
     {
         //Destroy(gameObject);
         lg.InitializePool();
-        gm.Respawn();
+        chr_ScoreManager.Respawn();
         platformTimer = platformTimeLimit;
         totalAir = totalAirLimit;
         //Debug.Log("GAME OVER: Time limit");
@@ -263,17 +273,20 @@ public class PlayerController : MonoBehaviour
         var mainModule = jumpParticle.main;
         jumpParticle.Play();
         launchParticle.Play();
+        audioSource.PlayOneShot(jumpClip);
     }
 
     private void PlayLaunchParticles()
     {
         launchParticle.Play();
+        audioSource.PlayOneShot(airJumpClip);
     }
 
     private void PlayLandParticles()
     {
         var mainModule = landParticle.main;
         landParticle.Play();
+        audioSource.PlayOneShot(landClip);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
