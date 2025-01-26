@@ -78,9 +78,24 @@ public class chr_GameManager : MonoBehaviour
         ChangeGameState(GameState.Settings);
     }
 
+    public void SettingsOut(){
+        if(SceneManager.GetActiveScene().buildIndex == 0){
+            ChangeGameState(GameState.Menu);
+            DisableAllPanels();
+        }else if(SceneManager.GetActiveScene().buildIndex == 1){
+            ChangeGameState(GameState.PlayGame);
+            DisableAllPanels();
+            GamePanels[1].SetActive(true);
+        }
+    }
+
     public void GameOver()
     {
         ChangeGameState(GameState.GameOver);
+    }
+
+    public void QuitGame(){
+        Application.Quit();
     }
 
     public void DisableAllPanels()
