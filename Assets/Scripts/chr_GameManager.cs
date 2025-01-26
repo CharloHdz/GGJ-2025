@@ -6,13 +6,13 @@ public class chr_GameManager : MonoBehaviour
 {
     // Singleton
     public static chr_GameManager Instance {get; private set;}
-    public float HighScore;
 
     [Header("UI")]
     // GamePanels
     [SerializeField] private GameObject[] GamePanels;
     [SerializeField] private GameState GameState;
     [SerializeField] private TextMeshProUGUI HighScoreText;
+    [SerializeField] private chr_ScoreManager ScoreManager;
     public Idiomas Idioma;
 
     // Singleton
@@ -52,12 +52,6 @@ public class chr_GameManager : MonoBehaviour
             }
         }
     }
-
-    public void UpdateHighScoreUI()
-    {
-        HighScoreText.text = "High Score: " + HighScore.ToString() + "m";
-    }
-
     // UI Buttons
     public void ReturnToMenu()
     {
@@ -109,7 +103,7 @@ public class chr_GameManager : MonoBehaviour
                 break;
             case GameState.PlayGame:
                 SceneManager.LoadScene(1);
-                UpdateHighScoreUI();
+                GamePanels[1].SetActive(true);
                 DisableAllPanels();
                 GamePanels[0].SetActive(true);
                 break;

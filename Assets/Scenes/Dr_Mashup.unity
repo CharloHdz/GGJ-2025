@@ -843,7 +843,9 @@ MonoBehaviour:
   respawnPoint: {fileID: 1946984899}
   Distance: 0
   ScoreText: {fileID: 0}
+  HighScoreText: {fileID: 0}
   Score: 0
+  HighScore: 0
 --- !u!1 &1006486890
 GameObject:
   m_ObjectHideFlags: 0

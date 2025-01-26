@@ -83,8 +83,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("HUD")]
     [SerializeField] private Slider airJumpsSlider;
-
-    [SerializeField] private chr_GameManager gm;
     [SerializeField] private LevelGenerator lg;
     [SerializeField] private TextMeshProUGUI TimeText;
 

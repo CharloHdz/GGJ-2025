@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class chr_ScoreManager : MonoBehaviour
 {
@@ -8,15 +11,18 @@ public class chr_ScoreManager : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float Distance;
     [SerializeField] private TextMeshProUGUI ScoreText;
+    [SerializeField] private TextMeshProUGUI HighScoreText;
     public float Score;
+    public float HighScore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         // Load High Score from PlayerPrefs
-        chr_GameManager.Instance.HighScore = PlayerPrefs.GetFloat("HighScore", 0);
+        HighScore = PlayerPrefs.GetFloat("HighScore", 0);
         //Buscar Score Text
         ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        HighScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -36,20 +42,23 @@ public class chr_ScoreManager : MonoBehaviour
         Score = Mathf.Round(Distance);
 
         // Check and update High Score
-        if (Score > chr_GameManager.Instance.HighScore)
+        if (Score > HighScore)
         {
-            chr_GameManager.Instance.HighScore = Score;
-            PlayerPrefs.SetFloat("HighScore", chr_GameManager.Instance.HighScore);
-            chr_GameManager.Instance.UpdateHighScoreUI();
+            HighScore = Score;
+            PlayerPrefs.SetFloat("HighScore", HighScore);
         }
 
         ScoreText.text = "Depth: " + Score.ToString() + "m";
     }
 
-    public void Respawn()
+    public void UpdateHighScore()
     {
-        player.transform.position = respawnPoint.position;
-        PlayerRB.linearVelocity = new Vector2(0, 0);
+        HighScoreText.text = "High Score: " + HighScore.ToString() + "m";
+    }
+
+    public static void Respawn()
+    {
+        SceneManager.LoadScene(1);
     }
 
 }
