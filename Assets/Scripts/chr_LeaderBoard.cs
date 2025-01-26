@@ -12,7 +12,7 @@ namespace BubbleAbyssLB
         [SerializeField] private TMP_InputField _UsernameInputField;
 
         [SerializeField] private chr_GameManager _gameManager;
-        private int Score => (int)_gameManager.Score;
+        private int Score => (int)_gameManager.HighScore;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
