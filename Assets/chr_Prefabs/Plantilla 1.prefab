@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 358697321521237950}
   - component: {fileID: 6446975445508539714}
   - component: {fileID: 5752574387030973462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plantilla 1 - BaseMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
