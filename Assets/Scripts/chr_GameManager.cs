@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using BubbleAbyssLB;
+using System.Runtime.CompilerServices;
 
 public class chr_GameManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class chr_GameManager : MonoBehaviour
     [Header("UI")]
     // GamePanels
     [SerializeField] private GameObject[] GamePanels;
-    [SerializeField] private GameState GameState;
+    public GameState GameState;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HighScoreText;
     [SerializeField] private chr_ScoreManager ScoreManager;
@@ -41,6 +42,7 @@ public class chr_GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            print("Escape");
             if (GameState == GameState.PlayGame || GameState == GameState.ResumeGame)
             {
                 Pause();
@@ -91,7 +93,7 @@ public class chr_GameManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            ChangeGameState(GameState.PlayGame);
+            ChangeGameState(GameState.Pause);
             DisableAllPanels();
             GamePanels[1].SetActive(true);
         }

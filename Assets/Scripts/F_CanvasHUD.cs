@@ -13,7 +13,14 @@ public class F_CanvasHUD : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            hudCanvas.SetActive(!hudCanvas.activeSelf);
+            if (chr_GameManager.Instance.GameState == GameState.PlayGame || chr_GameManager.Instance.GameState == GameState.ResumeGame)
+            {
+                hudCanvas.SetActive(true);
+            }
+            else if (chr_GameManager.Instance.GameState == GameState.Pause)
+            {
+                hudCanvas.SetActive(false);
+            }
         }
     }
 }
