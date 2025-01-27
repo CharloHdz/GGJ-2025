@@ -13,7 +13,9 @@ public class chr_GameManager : MonoBehaviour
     // GamePanels
     [SerializeField] private GameObject[] GamePanels;
     public GameState GameState;
+    public float Score;
     public TextMeshProUGUI ScoreText;
+    public float HighScore;
     public TextMeshProUGUI HighScoreText;
     [SerializeField] private chr_ScoreManager ScoreManager;
     public Idiomas Idioma;
@@ -34,6 +36,7 @@ public class chr_GameManager : MonoBehaviour
     void Start()
     {
         DisableAllPanels();
+        ChangeGameState(GameState.Menu);
     }
 
     // Update is called once per frame
@@ -52,9 +55,6 @@ public class chr_GameManager : MonoBehaviour
                 Resume();
             }
         }
-
-        Debug.Log(GameState);
-        Debug.Log(Time.timeScale);
 
     }
     // UI Buttons
@@ -88,14 +88,14 @@ public class chr_GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            ChangeGameState(GameState.Menu);
             DisableAllPanels();
+            ChangeGameState(GameState.Menu);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             ChangeGameState(GameState.Pause);
             DisableAllPanels();
-            GamePanels[1].SetActive(true);
+            GamePanels[2].SetActive(true);
         }
     }
 
@@ -139,30 +139,31 @@ public class chr_GameManager : MonoBehaviour
             case GameState.Menu:
                 DisableAllPanels();
                 Time.timeScale = 1;
+                GamePanels[0].SetActive(true);
                 break;
             case GameState.PlayGame:
                 SceneManager.LoadScene(1);
-                GamePanels[1].SetActive(true);
                 DisableAllPanels();
-                GamePanels[0].SetActive(true);
+                GamePanels[1].SetActive(true);
                 break;
             case GameState.Pause:
                 Time.timeScale = 0;
                 DisableAllPanels();
-                GamePanels[1].SetActive(true);
+                GamePanels[2].SetActive(true);
                 break;
             case GameState.ResumeGame:
                 Time.timeScale = 1;
                 DisableAllPanels();
-                GamePanels[0].SetActive(true);
+                GamePanels[1].SetActive(true);
                 break;
             case GameState.Settings:
                 DisableAllPanels();
-                GamePanels[2].SetActive(true);
+                GamePanels[3].SetActive(true);
+                print("Mondongo");
                 break;
             case GameState.GameOver:
                 DisableAllPanels();
-                GamePanels[3].SetActive(true);
+                GamePanels[4].SetActive(true);
                 break;
         }
     }

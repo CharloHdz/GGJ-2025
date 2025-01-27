@@ -30,6 +30,9 @@ public class chr_ScoreManager : MonoBehaviour
             PlayerRB.linearVelocity = new Vector2(PlayerRB.linearVelocity.x, -10);
         }
         UpdateHighScore();
+
+        chr_GameManager.Instance.Score = Score;
+        chr_GameManager.Instance.HighScore = HighScore;
     }
 
     public void ScoreDistancia()

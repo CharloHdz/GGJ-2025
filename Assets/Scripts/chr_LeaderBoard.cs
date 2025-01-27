@@ -10,9 +10,7 @@ namespace BubbleAbyssLB
         public static chr_LeaderBoard Instance { get; private set; }
         [SerializeField] private TMP_Text[] _entryTextObjects;
         [SerializeField] private TMP_InputField _UsernameInputField;
-
-        [SerializeField] private chr_ScoreManager _scoreManager;
-        private int Score => (int) chr_ScoreManager.Instance.HighScore;
+        public int Score => (int) chr_GameManager.Instance.HighScore;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -54,6 +52,7 @@ namespace BubbleAbyssLB
         
         public void UploadEntry()
         {
+            print("UploadEntry");
             Leaderboards.BubbleAbyssLB.UploadNewEntry(_UsernameInputField.text, Score, isSuccessful =>
             {
                 if (isSuccessful)
