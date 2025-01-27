@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using BubbleAbyssLB;
 
 public class chr_GameManager : MonoBehaviour
 {
@@ -11,24 +12,22 @@ public class chr_GameManager : MonoBehaviour
     // GamePanels
     [SerializeField] private GameObject[] GamePanels;
     [SerializeField] private GameState GameState;
-    [SerializeField] private TextMeshProUGUI HighScoreText;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
     [SerializeField] private chr_ScoreManager ScoreManager;
     public Idiomas Idioma;
 
-    // Singleton
-    private void Awake() 
-    { 
-        // If there is an instance, and it's not me, delete myself.
-        
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
             DontDestroyOnLoad(gameObject);
-        } 
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,6 +55,7 @@ public class chr_GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         ChangeGameState(GameState.Menu);
+        SceneManager.LoadScene(0);
     }
 
     public void Play()
@@ -106,6 +106,18 @@ public class chr_GameManager : MonoBehaviour
         }
     }
 
+    public void CambiarIdioma()
+    {
+        if(Idioma == Idiomas.Español)
+        {
+            Idioma = Idiomas.Ingles;
+        }
+        else
+        {
+            Idioma = Idiomas.Español;
+        }
+    }
+
     // Game States
     public void ChangeGameState(GameState state)
     {
@@ -114,7 +126,6 @@ public class chr_GameManager : MonoBehaviour
         {
             case GameState.Menu:
                 Time.timeScale = 1;
-                SceneManager.LoadScene(0);
                 break;
             case GameState.PlayGame:
                 SceneManager.LoadScene(1);
@@ -164,4 +175,6 @@ public enum Idiomas
     Español,
     Ingles
 }
+
+
 

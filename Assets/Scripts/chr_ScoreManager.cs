@@ -10,19 +10,16 @@ public class chr_ScoreManager : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float Distance;
-    [SerializeField] private TextMeshProUGUI ScoreText;
-    [SerializeField] private TextMeshProUGUI HighScoreText;
     public float Score;
     public float HighScore;
+
+    public static chr_ScoreManager Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         // Load High Score from PlayerPrefs
         HighScore = PlayerPrefs.GetFloat("HighScore", 0);
-        //Buscar Score Text
-        ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-        HighScoreText = GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -33,6 +30,7 @@ public class chr_ScoreManager : MonoBehaviour
         {
             PlayerRB.linearVelocity = new Vector2(PlayerRB.linearVelocity.x, -10);
         }
+        UpdateHighScore();
     }
 
     public void ScoreDistancia()
@@ -48,12 +46,12 @@ public class chr_ScoreManager : MonoBehaviour
             PlayerPrefs.SetFloat("HighScore", HighScore);
         }
 
-        ScoreText.text = "Depth: " + Score.ToString() + "m";
+        chr_GameManager.Instance.ScoreText.text = Score.ToString() + "m";
     }
 
     public void UpdateHighScore()
     {
-        HighScoreText.text = "High Score: " + HighScore.ToString() + "m";
+        chr_GameManager.Instance.HighScoreText.text = "HIGHSCORE: " + HighScore.ToString() + "m";
     }
 
     public static void Respawn()

@@ -7,12 +7,12 @@ namespace BubbleAbyssLB
 {
     public class chr_LeaderBoard : MonoBehaviour
     {
-
+        public static chr_LeaderBoard Instance { get; private set; }
         [SerializeField] private TMP_Text[] _entryTextObjects;
         [SerializeField] private TMP_InputField _UsernameInputField;
 
         [SerializeField] private chr_ScoreManager _scoreManager;
-        private int Score => (int) _scoreManager.HighScore;
+        private int Score => (int) chr_ScoreManager.Instance.HighScore;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -25,7 +25,7 @@ namespace BubbleAbyssLB
             
         }
 
-        private void LoadEntries()
+        public void LoadEntries()
         {
             // Limpiar todos los textos antes de cargar nuevas entradas
             foreach (var textObject in _entryTextObjects)
@@ -66,6 +66,8 @@ namespace BubbleAbyssLB
                     Debug.LogError("Failed to upload entry.");
                 }
             });
+
+            LoadEntries();
         }
 
     }
