@@ -6,7 +6,7 @@ using BubbleAbyssLB;
 public class chr_GameManager : MonoBehaviour
 {
     // Singleton
-    public static chr_GameManager Instance {get; private set;}
+    public static chr_GameManager Instance { get; private set; }
 
     [Header("UI")]
     // GamePanels
@@ -50,6 +50,10 @@ public class chr_GameManager : MonoBehaviour
                 Resume();
             }
         }
+
+        Debug.Log(GameState);
+        Debug.Log(Time.timeScale);
+
     }
     // UI Buttons
     public void ReturnToMenu()
@@ -78,11 +82,15 @@ public class chr_GameManager : MonoBehaviour
         ChangeGameState(GameState.Settings);
     }
 
-    public void SettingsOut(){
-        if(SceneManager.GetActiveScene().buildIndex == 0){
+    public void SettingsOut()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
             ChangeGameState(GameState.Menu);
             DisableAllPanels();
-        }else if(SceneManager.GetActiveScene().buildIndex == 1){
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
             ChangeGameState(GameState.PlayGame);
             DisableAllPanels();
             GamePanels[1].SetActive(true);
@@ -94,7 +102,8 @@ public class chr_GameManager : MonoBehaviour
         ChangeGameState(GameState.GameOver);
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Application.Quit();
     }
 
@@ -108,7 +117,7 @@ public class chr_GameManager : MonoBehaviour
 
     public void CambiarIdioma()
     {
-        if(Idioma == Idiomas.Español)
+        if (Idioma == Idiomas.Español)
         {
             Idioma = Idiomas.Ingles;
         }
@@ -122,9 +131,11 @@ public class chr_GameManager : MonoBehaviour
     public void ChangeGameState(GameState state)
     {
         GameState = state;
+
         switch (state)
         {
             case GameState.Menu:
+                DisableAllPanels();
                 Time.timeScale = 1;
                 break;
             case GameState.PlayGame:
