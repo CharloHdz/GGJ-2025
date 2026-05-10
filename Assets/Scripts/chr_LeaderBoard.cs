@@ -14,7 +14,7 @@ namespace BubbleAbyssLB
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            LoadEntries();
+            //LoadEntries();
         }
 
         // Update is called once per frame
@@ -30,6 +30,7 @@ namespace BubbleAbyssLB
                 textObject.text = "";
 
             // Cargar las entradas del leaderboard
+            /*
             Leaderboards.BubbleAbyssLB.GetEntries(entries =>
             {
                 // Asegurarse de no exceder la cantidad de elementos disponibles
@@ -47,6 +48,7 @@ namespace BubbleAbyssLB
                     _entryTextObjects[i].text = "";
                 }
             });
+            */
         }
 
         

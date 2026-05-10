@@ -62,11 +62,18 @@ public class LevelGenerator : MonoBehaviour
         if (levelPool.Count > 0)
         {
             GameObject piece = levelPool.Dequeue();
-            piece.SetActive(true);
 
             // Mantener la posición en x del prefab y ajustar la posición en y
             Vector3 position = piece.transform.position;
             piece.transform.position = new Vector3(position.x, spawnY, position.z);
+
+            piece.SetActive(true);
+
+
+            foreach (Transform child in piece.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
 
             levelPool.Enqueue(piece);
         }

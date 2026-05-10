@@ -20,7 +20,7 @@ public class chr_BulletScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Rompible"){
             chr_OP.instance.SpawnRompiblePS(transform.position, transform.rotation);
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             chr_OP.instance.BulletDestroy(gameObject);
         }else if(other.gameObject.layer == 6 || other.gameObject.layer == 8){
             chr_OP.instance.BulletDestroy(gameObject);

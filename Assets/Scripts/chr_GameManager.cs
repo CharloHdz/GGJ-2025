@@ -17,7 +17,6 @@ public class chr_GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public float HighScore;
     public TextMeshProUGUI HighScoreText;
-    [SerializeField] private chr_ScoreManager ScoreManager;
     public Idiomas Idioma;
 
     private void Awake()
